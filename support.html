@@ -2,138 +2,227 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Fintact Destek</title>
+
+  <!-- App Review için temel meta -->
+  <meta name="description" content="Fintact destek ve iletişim sayfası. Yardım için bize ulaşın." />
+  <meta name="theme-color" content="#0fb37d" />
+
+  <!-- iOS safe-area -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
+    :root{
+      --bg: #0b1020;
+      --bg-card: #0f152b;
+      --txt: #eaf1ff;
+      --muted: #9fb0cc;
+      --brand: #00d39b;
+      --brand-2: #6ae2c2;
+      --stroke: rgba(255,255,255,.08);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
     }
-
-    .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 2rem;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      color: #2c3e50;
-      margin: 0;
-    }
-
-    header p {
-      font-size: 1.1rem;
-      color: #666;
-      margin-top: 0.5rem;
-    }
-
-    section {
-      margin-bottom: 2rem;
-    }
-
-    section h2 {
-      color: #1abc9c;
-      margin-bottom: 0.5rem;
-      font-size: 1.4rem;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.6rem 1.2rem;
-      background-color: #1abc9c;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 6px;
-      margin-top: 0.5rem;
-      font-weight: 500;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    ul li {
-      padding: 0.3rem 0;
-      font-size: 1rem;
-    }
-
-    a {
-      color: #2980b9;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #999;
-      border-top: 1px solid #ddd;
-      padding-top: 1rem;
-    }
-
-    /* Responsive Tasarım */
-    @media (max-width: 600px) {
-      .container {
-        padding: 1rem;
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f7f9fc;
+        --bg-card:#ffffff;
+        --txt:#1d2433;
+        --muted:#5a6b85;
+        --brand:#00b37a;
+        --brand-2:#38e1b4;
+        --stroke: rgba(0,0,0,.06);
+        --shadow: 0 12px 24px rgba(16,24,40,.08);
       }
+    }
 
-      header h1 {
-        font-size: 2rem;
-      }
+    /* Reset */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(88,255,211,.08), transparent 60%),
+        radial-gradient(1000px 500px at -10% 0%, rgba(88,255,211,.07), transparent 60%),
+        var(--bg);
+      color:var(--txt);
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
 
-      section h2 {
-        font-size: 1.2rem;
-      }
+    .wrap{
+      max-width:900px;
+      margin:auto;
+      padding: clamp(16px, 2.5vw, 28px);
+    }
 
-      ul li {
-        font-size: 0.95rem;
-      }
+    .card{
+      background:var(--bg-card);
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
 
-      .btn {
-        width: 100%;
-        text-align: center;
-        padding: 0.8rem;
-        font-size: 1rem;
-      }
+    .hero{
+      position:relative;
+      padding: clamp(28px, 5vw, 48px);
+      background:
+        radial-gradient(1200px 500px at 10% 0%, rgba(0,211,155,.18), transparent 60%),
+        linear-gradient(135deg, rgba(0,211,155,.20), rgba(0,0,0,0) 40%),
+        transparent;
+      border-bottom: 1px solid var(--stroke);
+    }
+    .logo-badge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 14px;
+      border:1px solid var(--stroke);
+      border-radius:999px;
+      background: rgba(255,255,255,.04);
+      font-weight:600;
+      letter-spacing:.2px;
+      user-select:none;
+    }
+    .logo-dot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(180deg, var(--brand), var(--brand-2));
+      box-shadow: 0 0 0 4px rgba(0,211,155,.15);
+    }
+    h1{
+      font-size: clamp(28px, 4.5vw, 40px);
+      line-height:1.15;
+      margin:16px 0 8px;
+      letter-spacing:-.02em;
+    }
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size: clamp(14px, 2.5vw, 16px);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(14px, 2vw, 20px);
+      padding: clamp(20px, 3.2vw, 28px);
+    }
+    @media (max-width:720px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .section{
+      padding:20px;
+      border:1px solid var(--stroke);
+      border-radius:14px;
+      background: linear-gradient(180deg, rgba(255,255,255,.02), transparent 30%);
+    }
+    .section h2{
+      margin:0 0 8px;
+      font-size: clamp(16px, 2.6vw, 18px);
+      letter-spacing:.2px;
+    }
+    .section p{ margin:0 0 12px; color:var(--muted) }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding: 12px 16px;
+      font-weight:600;
+      text-decoration:none;
+      color:#073b2a;
+      background: linear-gradient(180deg, var(--brand-2), var(--brand));
+      border:none; border-radius:12px;
+      box-shadow: 0 6px 18px rgba(0,211,155,.25);
+      transition: transform .07s ease, box-shadow .2s ease, filter .2s ease;
+      will-change: transform;
+    }
+    .btn:active{ transform: translateY(1px) scale(.99) }
+    .btn:focus{ outline:2px solid rgba(0,211,155,.45); outline-offset:3px; }
+
+    .list{ list-style:none; padding:0; margin:0; display:grid; gap:10px }
+    .list a{
+      display:flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      text-decoration:none; color:var(--txt);
+      border:1px solid var(--stroke); border-radius:12px;
+      transition: border-color .2s ease, background .2s ease, transform .07s ease;
+      background: rgba(255,255,255,.02);
+    }
+    .list a:active{ transform: translateY(1px) }
+    .list small{ color:var(--muted); }
+
+    .kicker{ font-weight:700; font-size:.92rem; letter-spacing:.28px; color:var(--muted); text-transform:uppercase }
+    .spacer{ height:8px }
+
+    .footer{
+      padding: 18px;
+      border-top:1px solid var(--stroke);
+      text-align:center; color:var(--muted);
+      font-size:.95rem;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.02), transparent 30%),
+        transparent;
+    }
+
+    /* Touch hedefleri */
+    a, button { -webkit-tap-highlight-color: rgba(0,0,0,0); min-height:44px }
+
+    /* Animasyonlar çok olan cihazlarda azalt */
+    @media (prefers-reduced-motion: reduce){
+      .btn, .list a { transition: none }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Fintact Destek</h1>
-      <p>Size yardımcı olmak için buradayız.</p>
-    </header>
+  <main class="wrap">
+    <article class="card" role="region" aria-label="Fintact Destek">
+      <header class="hero">
+        <span class="logo-badge" aria-label="Fintact">
+          <span class="logo-dot" aria-hidden="true"></span>
+          Fintact
+        </span>
+        <h1>Destek & İletişim</h1>
+        <p class="subtitle">Sorularınız için hızlıca yanıt verelim. Genelde aynı gün geri dönüş yapıyoruz.</p>
+        <div class="spacer"></div>
+        <a
+          class="btn"
+          href="mailto:gelirgiderdestek@gmail.com?subject=Fintact%20Destek%20Talebi&body=Merhaba%20Fintact%20Destek%2C%0A%0A%C3%9Cr%C3%BCn%20S%C3%BCr%C3%BCm%C3%BC%3A%20%0ACihaz%3A%20%0AA%C3%A7%C4%B1klama%3A%20%0A%0ATe%C5%9Fekk%C3%BCrler."
+          aria-label="Destek e-postası gönder"
+        >
+          ✉️ Destek ile İletişime Geç
+        </a>
+      </header>
 
-    <section class="contact">
-      <h2>📩 Bizimle İletişime Geçin</h2>
-      <p>Her türlü soru ve geri bildirim için bize ulaşın.</p>
-      <a href="mailto:gelirgiderdestek@gmail.com" class="btn">gelirgiderdestek@gmail.com</a>
-    </section>
+      <section class="grid" aria-label="Bağlantılar ve Bilgiler">
+        <div class="section">
+          <div class="kicker">İletişim</div>
+          <h2>📩 E-posta</h2>
+          <p>Her türlü soru ve geri bildirim için bize yazın.</p>
+          <a class="btn" href="mailto:gelirgiderdestek@gmail.com">gelirgiderdestek@gmail.com</a>
+        </div>
 
-    <section class="links">
-      <h2>🔗 Diğer Bağlantılar</h2>
-      <ul>
-        <li><a href="mailto:gelirgiderdestek@gmail.com">Destek</a></li>
-      </ul>
-    </section>
+        <div class="section">
+          <div class="kicker">Bağlantılar</div>
+          <h2>🔗 Hızlı Linkler</h2>
+          <ul class="list" aria-label="Bağlantı listesi">
+            <li>
+              <a href="mailto:gelirgiderdestek@gmail.com">
+                <span>Destek</span>
+                <small>— E-posta ile ulaşın</small>
+              </a>
+            </li>
+            <!-- Gerekirse buraya Gizlilik, Kullanım Şartları linkleri eklenebilir -->
+          </ul>
+        </div>
+      </section>
 
-    <footer>
-      <p>&copy; 2025 Fintact. Tüm hakları saklıdır.</p>
-    </footer>
-  </div>
+      <footer class="footer">
+        <small>&copy; 2025 Fintact • Tüm hakları saklıdır.</small>
+      </footer>
+    </article>
+  </main>
 </body>
 </html>
